@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="feelsLike">Feels like: %d%s</string>
+    <string name="weatherDescription">%s (%.0f%% clouds)</string>
+    <string name="nowindgust">Winds: %s at %.1f mph</string>
+    <string name="windDir">Winds: %s at %.1f mph gusting to %.1f mph</string>
+    <string name="humidity">Humidity: %.0f%%</string>
+    <string name="uvIndex">UV Index: %d</string>
+    <string name="visibility">Visibility: %.1f mi</string>
+    <string name="textview">TextView</string>
+    <string name="sunrise">Sunrise: %s</string>
+    <string name="sunset">Sunset: %s</string>
+    <string name="suntimePattern">h:mm a</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="evening">Evening</string>
+    <string name="night">Night</string>
+</resources>
