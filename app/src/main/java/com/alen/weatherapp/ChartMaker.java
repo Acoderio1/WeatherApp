@@ -83,15 +83,18 @@ public class ChartMaker {
 
         LineDataSet lineDataSet;
         lineDataSet = new LineDataSet(values, "DataSet 1");
-        lineDataSet.setDrawIcons(false);
-        lineDataSet.setColor(Color.WHITE);
-        lineDataSet.setCircleColor(Color.BLACK);
-        lineDataSet.setLineWidth(3f);
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setDrawValues(false);
-        lineDataSet.setValueTextSize(12f);
-        lineDataSet.setDrawFilled(false);
-        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        // Disable line drawing
+        lineDataSet.setDrawCircles(true); // Enable circles (dots)
+        lineDataSet.setDrawValues(false); // Disable value labels
+        lineDataSet.setDrawFilled(false); // Disable filled area
+        lineDataSet.setLineWidth(0f); // Set line width to 0 to hide lines
+        lineDataSet.setColor(Color.TRANSPARENT); // Make the line color transparent
+
+// Customize the dots
+        lineDataSet.setCircleColor(Color.WHITE); // Set the dot color
+        lineDataSet.setCircleRadius(3f); // Set the size of the dots
+        lineDataSet.setCircleHoleColor(Color.WHITE); // Optional: set inner color
+        lineDataSet.setCircleHoleRadius(2f); // Optional: size of inner hole
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineDataSet); // add the datasets
@@ -146,12 +149,15 @@ public class ChartMaker {
     private void setupXAxis(LineChart mChart) {
 
         XAxis xAxis = mChart.getXAxis();
-        xAxis.enableGridDashedLine(10f, 10f, 0f);
-        xAxis.setGridColor(Color.parseColor("#DDFFFFFF"));
+        xAxis.disableGridDashedLine();
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
+//        xAxis.enableGridDashedLine(10f, 10f, 0f);
+//        xAxis.setGridColor(Color.parseColor("#DDFFFFFF"));
         xAxis.setValueFormatter(new MyCustomXAxisValueFormatter());
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(Color.WHITE);
-        xAxis.setTextSize(15);
+        xAxis.setTextSize(10);
         xAxis.setLabelRotationAngle(90);
         xAxis.setLabelCount(8, true);
         xAxis.setSpaceMax(0.0f);
@@ -164,10 +170,13 @@ public class ChartMaker {
     private void setupYAxis(LineChart mChart) {
 
         YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.disableGridDashedLine();
+        leftAxis.setDrawAxisLine(false);
         leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-        leftAxis.enableGridDashedLine(10f, 10f, 0f);
+//        leftAxis.enableGridDashedLine(10f, 10f, 0f);
         leftAxis.setValueFormatter(new MyCustomYAxisValueFormatter());
-        leftAxis.setGridColor(Color.parseColor("#DDFFFFFF"));
+//        leftAxis.setGridColor(Color.parseColor("#DDFFFFFF"));
 
         int orientation = mainActivity.getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -179,8 +188,8 @@ public class ChartMaker {
 
         leftAxis.setDrawZeroLine(false);
         leftAxis.setTextColor(Color.WHITE);
-        leftAxis.setTextSize(16);
-        leftAxis.setDrawLimitLinesBehindData(true);
+        leftAxis.setTextSize(10);
+//        leftAxis.setDrawLimitLinesBehindData(true);
 
 
     }

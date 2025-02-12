@@ -342,14 +342,15 @@ public class MainActivity extends AppCompatActivity {
         locationString = getPlaceName(weather.getLatitude(), weather.getLongitude());
 
         ColorMaker.setColorGradient(binding.main, weather.getCurrentConditions().getTemp(), tempSymbol.substring(1) );
-        ColorMaker.setColorGradient(binding.iconBar, weather.getCurrentConditions().getTemp(), tempSymbol.substring(1) );
+//        ColorMaker.setColorGradient(binding.iconBar, weather.getCurrentConditions().getTemp(), tempSymbol.substring(1) );
 
         String[] parts = weather.getResolvedAddress().split(",");
         TimeZone timeZone = TimeZone.getTimeZone(weather.getTimeZone());
         cal.setTimeZone(timeZone);
 
-        String resolvedAddress = parts[0] + ", " + dateFormatter("EEE MMM dd hh:mm a",timeZone, cal.getTime());
+        String resolvedAddress = parts[0] + "";
         binding.resolvedAddress.setText(resolvedAddress);
+        binding.dateTime.setText(dateFormatter("EEE dd, h:mm a",timeZone, cal.getTime()));
         binding.temperature.setText((Math.round(weather.getCurrentConditions().getTemp())) + tempSymbol);
 
         String icon = weather.getCurrentConditions().getIcon().replace("-", "_");
@@ -364,18 +365,19 @@ public class MainActivity extends AppCompatActivity {
         binding.weatherDescription.setText(String.format(this.getString(R.string.weatherDescription),
                 weather.getCurrentConditions().getConditions(),
                 weather.getCurrentConditions().getCloudcover()));
-        if (weather.getCurrentConditions().getWindgust() == 0.0) {
-            binding.windDir.setText(String.format(
-                    this.getString(R.string.nowindgust),
-                    getDirection(weather.getCurrentConditions().getWinddir()),
-                    weather.getCurrentConditions().getWindspeed()));
-        } else {
-            binding.windDir.setText(String.format(
-                    this.getString(R.string.windDir),
-                    getDirection(weather.getCurrentConditions().getWinddir()),
-                    weather.getCurrentConditions().getWindspeed(),
-                    weather.getCurrentConditions().getWindgust()));
-        }
+        binding.windDir.setText("");
+//        if (weather.getCurrentConditions().getWindgust() == 0.0) {
+//            binding.windDir.setText(String.format(
+//                    this.getString(R.string.nowindgust),
+//                    getDirection(weather.getCurrentConditions().getWinddir()),
+//                    weather.getCurrentConditions().getWindspeed()));
+//        } else {
+//            binding.windDir.setText(String.format(
+//                    this.getString(R.string.windDir),
+//                    getDirection(weather.getCurrentConditions().getWinddir()),
+//                    weather.getCurrentConditions().getWindspeed(),
+//                    weather.getCurrentConditions().getWindgust()));
+//        }
         binding.humidity.setText(String.format(this.getString(R.string.humidity), weather.getCurrentConditions().getHumidity()));
         binding.uvIndex.setText(String.format(this.getString(R.string.uvIndex), weather.getCurrentConditions().getUvindex()));
         binding.visibility.setText(String.format(this.getString(R.string.visibility), weather.getCurrentConditions().getVisibility()));
